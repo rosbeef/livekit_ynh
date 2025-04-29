@@ -7,7 +7,7 @@ Type=simple
 User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=LIVEKIT_URL="ws://__DOMAIN__/jwt" LIVEKIT_KEY=__KEY__ LIVEKIT_SECRET=__SECRET__ __INSTALL_DIR__/jwt/lk-jwt-service
+ExecStart=LIVEKIT_URL="ws://__DOMAIN__/jwt" LIVEKIT_JWT_PORT=__PORT_JWT__ LIVEKIT_KEY=__KEY__ LIVEKIT_SECRET=__SECRET__ __INSTALL_DIR__/jwt/lk-jwt-service
 StandardOutput=append:/var/log/__APP__/__APP__jwt.log
 StandardError=inherit
 
