@@ -32,9 +32,11 @@ source /usr/share/yunohost/helpers
 
 # If you need to, you can define custom settings
 # (or remove this section entirely if not relevant for you)
-foo="bar"
-ynh_app_setting_set --key=key --value=ynh_string_random --filter='A-Za-z0-9'
-ynh_app_setting_set --key=secret --value=ynh_string_random --filter='A-Za-z0-9'
+key=ynh_string_random --filter='A-Za-z0-9'
+secret=ynh_string_random --filter='A-Za-z0-9'
+
+ynh_app_setting_set --key=key --value=$key
+ynh_app_setting_set --key=secret --value=$secret
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
