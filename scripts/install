@@ -49,8 +49,8 @@ ynh_script_progression "Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
 # Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir/sfu" --
-ynh_setup_source --dest_dir="$install_dir/jwt" --
+ynh_setup_source --dest_dir="$install_dir/sfu" --source_id="sfu"
+ynh_setup_source --dest_dir="$install_dir/jwt" --source_id="jwt"
 
 
 ### $install_dir will automatically be initialized with some decent
