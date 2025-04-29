@@ -48,12 +48,25 @@ ynh_script_progression "Setting up source files..."
 ### `ynh_setup_source` use the file manifest.toml
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir"
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir/sfu" --
+ynh_setup_source --dest_dir="$install_dir/jwt" --
+
 
 ### $install_dir will automatically be initialized with some decent
 ### permission by default... however, you may need to recursively reapply
 ### ownership to all files such as after the ynh_setup_source step
 chown -R "$app:www-data" "$install_dir"
+
+#=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression "Installing dependencies for jwt ..."
+
+ynh_go_install
+pushd $install_dir/jwt
+  ynh_hide_warnings ynh_exec_as_app go build -o lk-jwt-service .
+popd
 
 #=================================================
 # APP INITIAL CONFIGURATION
@@ -72,13 +85,14 @@ ynh_script_progression "Adding $app's configuration files..."
 ###
 ### Check the documentation of `ynh_config_add` for more info.
 
+ynh_config_add --template="config_sfu.yamle" --destination="$install_dir/sfu/config.yaml"
 ynh_config_add --template="some_config_file" --destination="$install_dir/some_config_file"
 
 # FIXME: this should be handled by the core in the future
 ### You may need to use chmod 600 instead of 400,
 ### for example if the app is expected to be able to modify its own config
-chmod 400 "$install_dir/some_config_file"
-chown "$app:$app" "$install_dir/some_config_file"
+#chmod 400 "$install_dir/some_config_file"
+#chown "$app:$app" "$install_dir/some_config_file"
 
 ### For more complex cases where you want to replace stuff using regexes,
 ### you shoud rely on ynh_replace (which is basically a wrapper for sed)
@@ -104,7 +118,7 @@ ynh_script_progression "Adding system configurations related to $app..."
 ###   - And the section "PHP-FPM CONFIGURATION" in the upgrade script
 
 # Create a PHP-FPM config (with conf/extra_php-fpm.conf being appended to it)
-ynh_config_add_phpfpm
+#ynh_config_add_phpfpm
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
@@ -121,7 +135,8 @@ ynh_config_add_nginx
 ###   - And the section "SETUP SYSTEMD" in the upgrade script
 
 # Create a dedicated systemd config
-ynh_config_add_systemd
+ynh_config_add_systemd --service=$app-sfu --template --/conf/systemd-sfu.service
+ynh_config_add_systemd --service=$app-jwt --template --/conf/systemd-jwt.service
 
 ### `yunohost service add` integrates a service in YunoHost. It then gets
 ### displayed in the admin interface and through the others `yunohost service` commands.
@@ -147,7 +162,7 @@ ynh_config_add_systemd
 ### to proceed if you later realize that you need to enable some flags that
 ### weren't enabled on old installs (be careful it'll override the existing
 ### service though so you should re-provide all relevant flags when doing so)
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="federated video call server for Element-(X|web|desktop)" --log="/var/log/$app/$app.log"
 
 ### `ynh_config_add_logrotate` is used to configure a logrotate configuration for the logs of this app.
 ### Use this helper only if there is effectively a log file for this app.
@@ -173,8 +188,8 @@ ynh_config_add_fail2ban --logpath="/var/log/nginx/${domain}-error.log" --failreg
 ### forms.
 
 # Installation with curl
-ynh_script_progression "Finalizing installation..."
-ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
+#ynh_script_progression "Finalizing installation..."
+#ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -190,7 +205,8 @@ ynh_script_progression "Starting $app's systemd service..."
 ###   - And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app-sfu" --action="start"
+ynh_systemctl --service="$app-jwt" --action="start"
 
 #=================================================
 # END OF SCRIPT
