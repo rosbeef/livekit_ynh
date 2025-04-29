@@ -143,11 +143,11 @@ ram.runtime = "50M"
     sfu.default = 7880
     jwt.default = 8080
 
-    [resources.apt]
+    #[resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
     #packages = "mariadb-server, deb1, deb2, php8.3-foo, php8.3-bar"
 
-    [resources.database]
+    #[resources.database]
     # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd
     #type = "mysql"
