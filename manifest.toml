@@ -91,7 +91,7 @@ ram.runtime = "50M"
     # See the packaging documentation for the full set
     # of explanation regarding the behavior and properties for each of those
 
-    [resources.sources]
+    #[resources.sources]
 
     [resources.sources.main]
     # This will pre-fetch the asset which can then be deployed during the install/upgrade scripts with :
