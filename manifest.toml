@@ -140,6 +140,8 @@ ram.runtime = "50M"
 
     [resources.ports]
     # This will pick a random port for reverse-proxying and store it as the $port setting
+    sfu.default = 7880
+    jwt.default = 8080
 
     [resources.apt]
     # This will automatically install/uninstall the following apt packages
