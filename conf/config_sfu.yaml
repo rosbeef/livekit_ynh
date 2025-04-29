@@ -14,7 +14,7 @@
 
 # main TCP port for RoomService and RTC endpoint
 # for production setups, this port should be placed behind a load balancer with TLS
-port: 7880
+port: __PORT_SFU__
 
 # when redis is set, LiveKit will automatically operate in a fully distributed fashion
 # clients could connect to any node and be routed to the same room
