@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/YunoHost/apps/main/schemas/manifest.v2.schema.json
+    #:schema https://raw.githubusercontent.com/YunoHost/apps/main/schemas/manifest.v2.schema.json
 
 packaging_format = 2
 
@@ -115,9 +115,10 @@ ram.runtime = "50M"
     autoupdate.asset.arm64 = ".*\\.arm64.tar.gz"
     autoupdate.asset.armhf = ".*\\.arm.tar.gz"
 
-   [resources.sources.jwt]
+    [resources.sources.jwt]
     url = "https://github.com/element-hq/lk-jwt-service/archive/refs/tags/v0.2.3.tar.gz"
-
+    sha256 = "68d33629d4aebc12a3bc1bdfc667d052a20f7cc74b44d650abe8f4d8f6a24119"
+    
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset = ".*\\.tar.gz"
 
