@@ -3,7 +3,7 @@
 @@ -1,6 +1,6 @@
  module lk-jwt-service
  
--go 1.23
-+go 1.23.0
+-go 1.23.0
++go 1.23
  
  toolchain go1.24.1
