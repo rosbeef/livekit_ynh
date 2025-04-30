@@ -1,9 +1,0 @@
---- /var/www/livekit/jwt/go.mod
-+++ /var/www/livekit/jwt/go.mod
-@@ -1,6 +1,6 @@
- module lk-jwt-service
- 
--go 1.23
-+go 1.23.0
- 
- toolchain go1.24.1
