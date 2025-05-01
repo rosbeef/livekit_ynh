@@ -166,7 +166,8 @@ ynh_config_add_systemd --service=$app-jwt --template=systemd_jwt.service
 ### to proceed if you later realize that you need to enable some flags that
 ### weren't enabled on old installs (be careful it'll override the existing
 ### service though so you should re-provide all relevant flags when doing so)
-yunohost service add "$app" --description="federated video call server for Element-(X|web|desktop)" --log="/var/log/$app/$app.log"
+yunohost service add "$app-sfu" --description="LiveKit Real-time video, audio" --log="/var/log/$app/$app-sfu.log"
+yunohost service add "$app-jwt" --description="LiveKit Token Management Service" --log="/var/log/$app/$app-jwt.log"
 
 ### `ynh_config_add_logrotate` is used to configure a logrotate configuration for the logs of this app.
 ### Use this helper only if there is effectively a log file for this app.
