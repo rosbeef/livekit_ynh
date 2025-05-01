@@ -70,7 +70,7 @@ pushd $install_dir/jwt
   ynh_hide_warnings ynh_exec_as_app /opt/goenv/versions/$go_version/bin/go build -o lk-jwt-service .
 popd
 
-ynh_go_remove
+#ynh_go_remove
 
 #=================================================
 # APP INITIAL CONFIGURATION
