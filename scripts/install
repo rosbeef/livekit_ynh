@@ -70,7 +70,7 @@ pushd $install_dir/jwt
   ynh_hide_warnings ynh_exec_as_app /opt/goenv/versions/$go_version/bin/go build -o lk-jwt-service .
 popd
 
-#ynh_go_remove
+ynh_go_remove
 
 #=================================================
 # APP INITIAL CONFIGURATION
@@ -89,8 +89,8 @@ ynh_script_progression "Adding $app's configuration files..."
 ###
 ### Check the documentation of `ynh_config_add` for more info.
 
-ynh_config_add --template="config_sfu.yamle" --destination="$install_dir/sfu/config.yaml"
-ynh_config_add --template="some_config_file" --destination="$install_dir/some_config_file"
+ynh_config_add --template="config_sfu.yaml" --destination="$install_dir/sfu/config.yaml"
+#ynh_config_add --template="some_config_file" --destination="$install_dir/some_config_file"
 
 # FIXME: this should be handled by the core in the future
 ### You may need to use chmod 600 instead of 400,
