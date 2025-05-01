@@ -139,8 +139,8 @@ ynh_config_add_nginx
 ###   - And the section "SETUP SYSTEMD" in the upgrade script
 
 # Create a dedicated systemd config
-ynh_config_add_systemd --service=$app-sfu --template=systemd-sfu.service
-ynh_config_add_systemd --service=$app-jwt --template=systemd-jwt.service
+ynh_config_add_systemd --service=$app-sfu --template=systemd_sfu.service
+ynh_config_add_systemd --service=$app-jwt --template=systemd_jwt.service
 
 ### `yunohost service add` integrates a service in YunoHost. It then gets
 ### displayed in the admin interface and through the others `yunohost service` commands.
