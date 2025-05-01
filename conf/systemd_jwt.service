@@ -7,9 +7,9 @@ Type=simple
 User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
-Environment='LIVEKIT_URL="ws://__DOMAIN__/jwt" LIVEKIT_JWT_PORT=__PORT_JWT__ LIVEKIT_KEY=__KEY__ LIVEKIT_SECRET=__SECRET__'
+Environment='LIVEKIT_URL="ws://__DOMAIN__/sfu" LIVEKIT_JWT_PORT=__PORT_JWT__ LIVEKIT_KEY=__KEY__ LIVEKIT_SECRET=__SECRET__'
 ExecStart=__INSTALL_DIR__/jwt/lk-jwt-service
-StandardOutput=append:/var/log/__APP__/__APP__jwt.log
+StandardOutput=append:/var/log/__APP__/__APP__-jwt.log
 StandardError=inherit
 
 ### Depending on specificities of your service/app, you may need to tweak these
