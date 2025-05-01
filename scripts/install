@@ -64,9 +64,9 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression "Installing dependencies for jwt ..."
 
 ynh_go_install #--go_version="$go_version"
-pushd $install_dir/jwt
-  ynh_hide_warnings ynh_exec_as_app $go_dir/go build -o lk-jwt-service .
-popd
+ynh_hide_warnings ynh_exec_as_app go version
+  ynh_hide_warnings ynh_exec_as_app $go_dir/go build -o lk-jwt-service $install_dir/jwt
+
 
 #=================================================
 # APP INITIAL CONFIGURATION
