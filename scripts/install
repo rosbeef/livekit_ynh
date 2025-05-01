@@ -67,7 +67,7 @@ ynh_go_install
 ynh_hide_warnings ynh_exec_as_app go version
 
 pushd $install_dir/jwt
-  ynh_hide_warnings ynh_exec_as_app $go_dir/go build -o lk-jwt-service
+  ynh_hide_warnings ynh_exec_as_app go build -o lk-jwt-service
 popd
 
 ynh_go_remove
